@@ -30,7 +30,7 @@
 
 static struct task_struct *thread;
 
-static int __initdata mount_dev = IS_ENABLED(CONFIG_DEVTMPFS_MOUNT);
+static int __ro_after_init mount_dev = IS_ENABLED(CONFIG_DEVTMPFS_MOUNT);
 
 static DEFINE_SPINLOCK(req_lock);
 
