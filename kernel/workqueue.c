@@ -281,7 +281,7 @@ struct workqueue_struct {
 
 static struct kmem_cache *pwq_cache;
 
-static cpumask_var_t *wq_numa_possible_cpumask;
+static cpumask_var_t *wq_numa_possible_cpumask __ro_after_init;
 					/* possible CPUs of each node */
 
 static bool wq_disable_numa;
@@ -291,9 +291,9 @@ module_param_named(disable_numa, wq_disable_numa, bool, 0444);
 static bool wq_power_efficient = IS_ENABLED(CONFIG_WQ_POWER_EFFICIENT_DEFAULT);
 module_param_named(power_efficient, wq_power_efficient, bool, 0444);
 
-static bool wq_online;			/* can kworkers be created yet? */
+static bool wq_online __ro_after_init;	/* can kworkers be created yet? */
 
-static bool wq_numa_enabled;		/* unbound NUMA affinity enabled */
+static bool wq_numa_enabled __ro_after_init; /* unbound NUMA affinity enabled */
 
 /* buf for wq_update_unbound_numa_attrs(), protected by CPU hotplug exclusion */
 static struct workqueue_attrs *wq_update_unbound_numa_attrs_buf;
