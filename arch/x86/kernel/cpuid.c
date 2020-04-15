@@ -41,7 +41,7 @@
 #include <asm/msr.h>
 
 static struct class *cpuid_class;
-static enum cpuhp_state cpuhp_cpuid_state;
+static enum cpuhp_state cpuhp_cpuid_state __ro_after_init;
 
 struct cpuid_regs_done {
 	struct cpuid_regs regs;
