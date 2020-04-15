@@ -55,11 +55,13 @@
 #include <asm/uv/uv.h>
 
 static unsigned long efi_systab_phys __initdata;
-static unsigned long prop_phys = EFI_INVALID_TABLE_ADDR;
-static unsigned long uga_phys = EFI_INVALID_TABLE_ADDR;
-static unsigned long efi_runtime, efi_nr_tables;
+static unsigned long prop_phys __ro_after_init = EFI_INVALID_TABLE_ADDR;
+static unsigned long uga_phys __ro_after_init = EFI_INVALID_TABLE_ADDR;
+static unsigned long efi_runtime __ro_after_init;
+static unsigned long efi_nr_tables __ro_after_init;
 
-unsigned long efi_fw_vendor, efi_config_table;
+unsigned long efi_fw_vendor __ro_after_init;
+unsigned long efi_config_table __ro_after_init;
 
 static const efi_config_table_type_t arch_tables[] __initconst = {
 	{EFI_PROPERTIES_TABLE_GUID, "PROP", &prop_phys},
