@@ -63,12 +63,12 @@ struct gcov_node {
 
 static const char objtree[] = OBJTREE;
 static const char srctree[] = SRCTREE;
-static struct gcov_node root_node;
+static struct gcov_node root_node __ro_after_init;
 static LIST_HEAD(all_head);
 static DEFINE_MUTEX(node_lock);
 
 /* If non-zero, keep copies of profiling data for unloaded modules. */
-static int gcov_persist = 1;
+static int gcov_persist __ro_after_init = 1;
 
 static int __init gcov_persist_setup(char *str)
 {
