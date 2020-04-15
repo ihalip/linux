@@ -29,7 +29,7 @@
 #define TASKSTATS_CPUMASK_MAXLEN	(100+6*NR_CPUS)
 
 static DEFINE_PER_CPU(__u32, taskstats_seqnum);
-static int family_registered;
+static int family_registered __ro_after_init;
 struct kmem_cache *taskstats_cache;
 
 static struct genl_family family;
