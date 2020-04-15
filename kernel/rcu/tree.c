@@ -110,7 +110,7 @@ static int rcu_fanout_leaf = RCU_FANOUT_LEAF;
 module_param(rcu_fanout_leaf, int, 0444);
 int rcu_num_lvls __read_mostly = RCU_NUM_LVLS;
 /* Number of rcu_nodes at specified level. */
-int num_rcu_lvl[] = NUM_RCU_LVL_INIT;
+int num_rcu_lvl[] __ro_after_init = NUM_RCU_LVL_INIT;
 int rcu_num_nodes __read_mostly = NUM_RCU_NODES; /* Total # rcu_nodes in use. */
 
 /*
@@ -417,7 +417,9 @@ static long qlowmark = DEFAULT_RCU_QLOMARK;
 #define DEFAULT_RCU_QOVLD_MULT 2
 #define DEFAULT_RCU_QOVLD (DEFAULT_RCU_QOVLD_MULT * DEFAULT_RCU_QHIMARK)
 static long qovld = DEFAULT_RCU_QOVLD; /* If this many pending, hammer QS. */
-static long qovld_calc = -1;	  /* No pre-initialization lock acquisitions! */
+
+/* No pre-initialization lock acquisitions! */
+static long qovld_calc __ro_after_init = -1;
 
 module_param(blimit, long, 0444);
 module_param(qhimark, long, 0444);
@@ -3797,8 +3799,10 @@ static void __init rcu_init_one(void)
 {
 	static const char * const buf[] = RCU_NODE_NAME_INIT;
 	static const char * const fqs[] = RCU_FQS_NAME_INIT;
-	static struct lock_class_key rcu_node_class[RCU_NUM_LVLS];
-	static struct lock_class_key rcu_fqs_class[RCU_NUM_LVLS];
+	static struct lock_class_key
+		rcu_node_class[RCU_NUM_LVLS] __ro_after_init;
+	static struct lock_class_key
+		rcu_fqs_class[RCU_NUM_LVLS] __ro_after_init;
 
 	int levelspread[RCU_NUM_LVLS];		/* kids/node in each level. */
 	int cpustride = 1;
