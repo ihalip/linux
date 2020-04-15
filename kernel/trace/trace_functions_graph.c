@@ -328,7 +328,7 @@ static int graph_trace_update_thresh(struct trace_array *tr)
 	return graph_trace_init(tr);
 }
 
-static int max_bytes_for_cpu;
+static int max_bytes_for_cpu __ro_after_init;
 
 static void print_graph_cpu(struct trace_seq *s, int cpu)
 {

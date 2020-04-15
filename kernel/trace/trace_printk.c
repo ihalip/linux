@@ -193,7 +193,7 @@ void trace_printk_control(bool enabled)
 }
 
 __initdata_or_module static
-struct notifier_block module_trace_bprintk_format_nb = {
+struct notifier_block module_trace_bprintk_format_nb __ro_after_init = {
 	.notifier_call = module_trace_bprintk_format_notify,
 };
 
