@@ -35,7 +35,7 @@
 #include <asm/tlb.h>
 #include <asm/cpuidle_haltpoll.h>
 
-static int kvmapf = 1;
+static int kvmapf __ro_after_init = 1;
 
 static int __init parse_no_kvmapf(char *arg)
 {
@@ -45,7 +45,7 @@ static int __init parse_no_kvmapf(char *arg)
 
 early_param("no-kvmapf", parse_no_kvmapf);
 
-static int steal_acc = 1;
+static int steal_acc __ro_after_init = 1;
 static int __init parse_no_stealacc(char *arg)
 {
         steal_acc = 0;
@@ -56,7 +56,7 @@ early_param("no-steal-acc", parse_no_stealacc);
 
 static DEFINE_PER_CPU_DECRYPTED(struct kvm_vcpu_pv_apf_data, apf_reason) __aligned(64);
 DEFINE_PER_CPU_DECRYPTED(struct kvm_steal_time, steal_time) __aligned(64) __visible;
-static int has_steal_clock = 0;
+static int has_steal_clock __ro_after_init;
 
 /*
  * No need for any "IO delay" on KVM

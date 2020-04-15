@@ -411,7 +411,7 @@ static DECLARE_BITMAP(vmx_vpid_bitmap, VMX_NR_VPIDS);
 static DEFINE_SPINLOCK(vmx_vpid_lock);
 
 struct vmcs_config vmcs_config;
-struct vmx_capability vmx_capability;
+struct vmx_capability vmx_capability __ro_after_init;
 
 #define VMX_SEGMENT_FIELD(seg)					\
 	[VCPU_SREG_##seg] = {                                   \
@@ -437,7 +437,7 @@ static const struct kvm_vmx_segment_field {
 	VMX_SEGMENT_FIELD(LDTR),
 };
 
-static unsigned long host_idt_base;
+static unsigned long host_idt_base __ro_after_init;
 
 /*
  * Though SYSCALL is only supported in 64-bit mode on Intel CPUs, kvm
