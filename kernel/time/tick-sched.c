@@ -1330,7 +1330,7 @@ static enum hrtimer_restart tick_sched_timer(struct hrtimer *timer)
 	return HRTIMER_RESTART;
 }
 
-static int sched_skew_tick;
+static int sched_skew_tick __ro_after_init;
 
 static int __init skew_tick(char *str)
 {
