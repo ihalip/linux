@@ -53,7 +53,7 @@
  * lapic (always-on,ARAT) ------ 150
  */
 
-enum intel_mid_timer_options intel_mid_timer_options;
+enum intel_mid_timer_options intel_mid_timer_options __ro_after_init;
 
 enum intel_mid_cpu_type __intel_mid_cpu_chip;
 EXPORT_SYMBOL_GPL(__intel_mid_cpu_chip);
