@@ -393,7 +393,7 @@ static int thresh_event_valid(int level, int event)
 	return 1;
 }
 
-static bool int_pln_enable;
+static bool int_pln_enable __ro_after_init;
 static int __init int_pln_enable_setup(char *s)
 {
 	int_pln_enable = true;
