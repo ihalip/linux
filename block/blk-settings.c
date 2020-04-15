@@ -20,7 +20,7 @@
 unsigned long blk_max_low_pfn;
 EXPORT_SYMBOL(blk_max_low_pfn);
 
-unsigned long blk_max_pfn;
+unsigned long blk_max_pfn __ro_after_init;
 
 void blk_queue_rq_timeout(struct request_queue *q, unsigned int timeout)
 {
