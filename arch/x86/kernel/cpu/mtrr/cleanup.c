@@ -808,7 +808,7 @@ int __init mtrr_cleanup(unsigned address_bits)
 }
 #endif
 
-static int disable_mtrr_trim;
+static int disable_mtrr_trim __ro_after_init;
 
 static int __init disable_mtrr_trim_setup(char *str)
 {

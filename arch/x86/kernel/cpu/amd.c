@@ -829,7 +829,7 @@ static void init_amd_ln(struct cpuinfo_x86 *c)
 	msr_set_bit(MSR_AMD64_DE_CFG, 31);
 }
 
-static bool rdrand_force;
+static bool rdrand_force __ro_after_init;
 
 static int __init rdrand_cmdline(char *str)
 {

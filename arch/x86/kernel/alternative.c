@@ -42,7 +42,7 @@ static int __init debug_alt(char *str)
 }
 __setup("debug-alternative", debug_alt);
 
-static int noreplace_smp;
+static int noreplace_smp __ro_after_init;
 
 static int __init setup_noreplace_smp(char *str)
 {

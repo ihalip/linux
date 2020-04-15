@@ -100,7 +100,8 @@ asmlinkage void aesni_cbc_dec(struct crypto_aes_ctx *ctx, u8 *out,
 #ifdef CONFIG_X86_64
 
 static void (*aesni_ctr_enc_tfm)(struct crypto_aes_ctx *ctx, u8 *out,
-			      const u8 *in, unsigned int len, u8 *iv);
+				const u8 *in, unsigned int len,
+				u8 *iv) __ro_after_init;
 asmlinkage void aesni_ctr_enc(struct crypto_aes_ctx *ctx, u8 *out,
 			      const u8 *in, unsigned int len, u8 *iv);
 
@@ -176,7 +177,7 @@ static const struct aesni_gcm_tfm_s {
 			   const u8 *in, unsigned long ciphertext_len);
 	void (*finalize)(void *ctx, struct gcm_context_data *gdata,
 			 u8 *auth_tag, unsigned long auth_tag_len);
-} *aesni_gcm_tfm;
+} *aesni_gcm_tfm __ro_after_init;
 
 static const struct aesni_gcm_tfm_s aesni_gcm_tfm_sse = {
 	.init = &aesni_gcm_init,

@@ -86,7 +86,7 @@ static void swsusp_unset_page_forbidden(struct page *);
  * from their ->freeze() and ->freeze_noirq() callbacks so that they don't
  * cause image creation to fail (tunable via /sys/power/reserved_size).
  */
-unsigned long reserved_size;
+unsigned long reserved_size __ro_after_init;
 
 void __init hibernate_reserved_size_init(void)
 {
@@ -99,7 +99,7 @@ void __init hibernate_reserved_size_init(void)
  * size will not exceed N bytes, but if that is impossible, it will
  * try to create the smallest image possible.
  */
-unsigned long image_size;
+unsigned long image_size __ro_after_init;
 
 void __init hibernate_image_size_init(void)
 {

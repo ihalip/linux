@@ -45,7 +45,7 @@
 #define KPROBE_TABLE_SIZE (1 << KPROBE_HASH_BITS)
 
 
-static int kprobes_initialized;
+static int kprobes_initialized __ro_after_init;
 static struct hlist_head kprobe_table[KPROBE_TABLE_SIZE];
 static struct hlist_head kretprobe_inst_table[KPROBE_TABLE_SIZE];
 

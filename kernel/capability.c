@@ -27,7 +27,7 @@
 const kernel_cap_t __cap_empty_set = CAP_EMPTY_SET;
 EXPORT_SYMBOL(__cap_empty_set);
 
-int file_caps_enabled = 1;
+int file_caps_enabled __ro_after_init = 1;
 
 static int __init file_caps_disable(char *str)
 {

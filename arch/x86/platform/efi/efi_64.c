@@ -53,7 +53,7 @@
  * We allocate runtime services regions top-down, starting from -4G, i.e.
  * 0xffff_ffff_0000_0000 and limit EFI VA mapping space to 64G.
  */
-static u64 efi_va = EFI_VA_START;
+static u64 efi_va __ro_after_init = EFI_VA_START;
 
 struct efi_scratch efi_scratch;
 

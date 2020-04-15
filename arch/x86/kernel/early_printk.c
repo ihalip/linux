@@ -26,7 +26,8 @@
 /* Simple VGA output */
 #define VGABASE		(__ISA_IO_base + 0xb8000)
 
-static int max_ypos = 25, max_xpos = 80;
+static int max_ypos __ro_after_init = 25;
+static int max_xpos __ro_after_init = 80;
 static int current_ypos = 25, current_xpos;
 
 static void early_vga_write(struct console *con, const char *str, unsigned n)
@@ -79,7 +80,7 @@ static struct console early_vga_console = {
 
 /* Serial functions loosely based on a similar package from Klaus P. Gerlicher */
 
-static unsigned long early_serial_base = 0x3f8;  /* ttyS0 */
+static unsigned long early_serial_base __ro_after_init = 0x3f8;  /* ttyS0 */
 
 #define XMTRDY          0x20
 
@@ -107,8 +108,10 @@ static void io_serial_out(unsigned long addr, int offset, int value)
 	outb(value, addr + offset);
 }
 
-static unsigned int (*serial_in)(unsigned long addr, int offset) = io_serial_in;
-static void (*serial_out)(unsigned long addr, int offset, int value) = io_serial_out;
+static unsigned int (*serial_in)(unsigned long addr, int offset)
+			    __ro_after_init = io_serial_in;
+static void (*serial_out)(unsigned long addr, int offset, int value)
+			    __ro_after_init = io_serial_out;
 
 static int early_serial_putc(unsigned char ch)
 {

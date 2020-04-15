@@ -2440,7 +2440,7 @@ static int handle_pmi_common(struct pt_regs *regs, u64 status)
 	return handled;
 }
 
-static bool disable_counter_freezing = true;
+static bool disable_counter_freezing __ro_after_init = true;
 static int __init intel_perf_counter_freezing_setup(char *s)
 {
 	bool res;
@@ -4435,7 +4435,7 @@ static struct attribute *lbr_attrs[] = {
 	NULL
 };
 
-static char pmu_name_str[30];
+static char pmu_name_str[30] __ro_after_init;
 
 static ssize_t pmu_name_show(struct device *cdev,
 			     struct device_attribute *attr,

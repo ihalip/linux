@@ -168,13 +168,13 @@ EXPORT_SYMBOL_GPL(cgrp_dfl_root);
 static bool cgrp_dfl_visible;
 
 /* some controllers are not supported in the default hierarchy */
-static u16 cgrp_dfl_inhibit_ss_mask;
+static u16 cgrp_dfl_inhibit_ss_mask __ro_after_init;
 
 /* some controllers are implicitly enabled on the default hierarchy */
-static u16 cgrp_dfl_implicit_ss_mask;
+static u16 cgrp_dfl_implicit_ss_mask __ro_after_init;
 
 /* some controllers can be threaded on the default hierarchy */
-static u16 cgrp_dfl_threaded_ss_mask;
+static u16 cgrp_dfl_threaded_ss_mask __ro_after_init;
 
 /* The list of hierarchy roots */
 LIST_HEAD(cgroup_roots);

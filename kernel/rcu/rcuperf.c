@@ -93,8 +93,8 @@ static char *perf_type = "rcu";
 module_param(perf_type, charp, 0444);
 MODULE_PARM_DESC(perf_type, "Type of RCU to performance-test (rcu, srcu, ...)");
 
-static int nrealreaders;
-static int nrealwriters;
+static int nrealreaders __ro_after_init;
+static int nrealwriters __ro_after_init;
 static struct task_struct **writer_tasks;
 static struct task_struct **reader_tasks;
 static struct task_struct *shutdown_task;
@@ -596,7 +596,7 @@ torture_param(int, kfree_alloc_num, 8000, "Number of allocations and frees done 
 torture_param(int, kfree_loops, 10, "Number of loops doing kfree_alloc_num allocations and frees.");
 
 static struct task_struct **kfree_reader_tasks;
-static int kfree_nrealthreads;
+static int kfree_nrealthreads __ro_after_init;
 static atomic_t n_kfree_perf_thread_started;
 static atomic_t n_kfree_perf_thread_ended;
 

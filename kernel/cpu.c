@@ -1482,7 +1482,7 @@ core_initcall(cpu_hotplug_pm_sync_init);
 
 #endif /* CONFIG_PM_SLEEP_SMP */
 
-int __boot_cpu_id;
+int __boot_cpu_id __ro_after_init;
 
 #endif /* CONFIG_SMP */
 

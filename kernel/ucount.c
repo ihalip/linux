@@ -225,8 +225,8 @@ void dec_ucount(struct ucounts *ucounts, enum ucount_type type)
 static __init int user_namespace_sysctl_init(void)
 {
 #ifdef CONFIG_SYSCTL
-	static struct ctl_table_header *user_header;
-	static struct ctl_table empty[1];
+	static struct ctl_table_header *user_header __ro_after_init;
+	static struct ctl_table empty[1] __ro_after_init;
 	/*
 	 * It is necessary to register the user directory in the
 	 * default set so that registrations in the child sets work

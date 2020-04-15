@@ -117,7 +117,7 @@ PMU_EVENT_ATTR_STRING(cpu_thermal_margin,		attr_therm,		"event=0x07"	);
 PMU_EVENT_ATTR_STRING(cpu_thermal_margin.snapshot,	attr_therm_snap,	"1"		);
 PMU_EVENT_ATTR_STRING(cpu_thermal_margin.unit,		attr_therm_unit,	"C"		);
 
-static unsigned long msr_mask;
+static unsigned long msr_mask __ro_after_init;
 
 PMU_EVENT_GROUP(events, aperf);
 PMU_EVENT_GROUP(events, mperf);

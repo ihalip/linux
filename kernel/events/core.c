@@ -10517,7 +10517,7 @@ static struct attribute *pmu_dev_attrs[] = {
 };
 ATTRIBUTE_GROUPS(pmu_dev);
 
-static int pmu_bus_running;
+static int pmu_bus_running __ro_after_init;
 static struct bus_type pmu_bus = {
 	.name		= "event_source",
 	.dev_groups	= pmu_dev_groups,

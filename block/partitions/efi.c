@@ -94,7 +94,7 @@
  * the test for invalid PMBR.  Not __initdata because reloading
  * the partition tables happens after init too.
  */
-static int force_gpt;
+static int force_gpt __ro_after_init;
 static int __init
 force_gpt_fn(char *str)
 {

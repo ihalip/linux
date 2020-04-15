@@ -59,8 +59,8 @@
 /* arch_phys_wc_add returns an MTRR register index plus this offset. */
 #define MTRR_TO_PHYS_WC_OFFSET 1000
 
-u32 num_var_ranges;
-static bool __mtrr_enabled;
+u32 num_var_ranges __ro_after_init;
+static bool __mtrr_enabled __ro_after_init;
 
 static bool mtrr_enabled(void)
 {
@@ -70,12 +70,13 @@ static bool mtrr_enabled(void)
 unsigned int mtrr_usage_table[MTRR_MAX_VAR_RANGES];
 static DEFINE_MUTEX(mtrr_mutex);
 
-u64 size_or_mask, size_and_mask;
+u64 size_or_mask __ro_after_init;
+u64 size_and_mask __ro_after_init;
 static bool mtrr_aps_delayed_init;
 
 static const struct mtrr_ops *mtrr_ops[X86_VENDOR_NUM] __ro_after_init;
 
-const struct mtrr_ops *mtrr_if;
+const struct mtrr_ops *mtrr_if __ro_after_init;
 
 static void set_mtrr(unsigned int reg, unsigned long base,
 		     unsigned long size, mtrr_type type);

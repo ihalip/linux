@@ -73,7 +73,7 @@ static bool __read_mostly tracing_selftest_running;
 bool __read_mostly tracing_selftest_disabled;
 
 /* Pipe tracepoints to printk */
-struct trace_iterator *tracepoint_print_iter;
+struct trace_iterator *tracepoint_print_iter __ro_after_init;
 int tracepoint_printk;
 static DEFINE_STATIC_KEY_FALSE(tracepoint_printk_key);
 
@@ -121,10 +121,10 @@ cpumask_var_t __read_mostly	tracing_buffer_mask;
  * Set 2 if you want to dump the buffer of the CPU that triggered oops
  */
 
-enum ftrace_dump_mode ftrace_dump_on_oops;
+enum ftrace_dump_mode ftrace_dump_on_oops __ro_after_init;
 
 /* When set, tracing will stop when a WARN*() is hit */
-int __disable_trace_on_warning;
+int __disable_trace_on_warning __ro_after_init;
 
 #ifdef CONFIG_TRACE_EVAL_MAP_FILE
 /* Map of enums to their values, for "eval_map" file */
@@ -168,7 +168,7 @@ static void ftrace_trace_userstack(struct trace_buffer *buffer,
 
 #define MAX_TRACER_SIZE		100
 static char bootup_tracer_buf[MAX_TRACER_SIZE] __initdata;
-static char *default_bootup_tracer;
+static char *default_bootup_tracer __initdata;
 
 static bool allocate_snapshot;
 
@@ -660,7 +660,7 @@ int tracing_is_enabled(void)
  */
 #define TRACE_BUF_SIZE_DEFAULT	1441792UL /* 16384 * 88 (sizeof(entry)) */
 
-static unsigned long		trace_buf_size = TRACE_BUF_SIZE_DEFAULT;
+static unsigned long trace_buf_size __ro_after_init = TRACE_BUF_SIZE_DEFAULT;
 
 /* trace_types holds a link list of available tracers. */
 static struct tracer		*trace_types __read_mostly;

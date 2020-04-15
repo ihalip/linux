@@ -26,8 +26,8 @@
 #define PREFIX "PCI: "
 
 /* Indicate if the mmcfg resources have been placed into the resource table. */
-static bool pci_mmcfg_running_state;
-static bool pci_mmcfg_arch_init_failed;
+static bool pci_mmcfg_running_state __ro_after_init;
+static bool pci_mmcfg_arch_init_failed __ro_after_init;
 static DEFINE_MUTEX(pci_mmcfg_lock);
 #define pci_mmcfg_lock_held() lock_is_held(&(pci_mmcfg_lock).dep_map)
 

@@ -44,11 +44,11 @@ static int __read_mostly tsc_unstable;
 
 static DEFINE_STATIC_KEY_FALSE(__use_tsc);
 
-int tsc_clocksource_reliable;
+int tsc_clocksource_reliable __ro_after_init;
 
-static u32 art_to_tsc_numerator;
-static u32 art_to_tsc_denominator;
-static u64 art_to_tsc_offset;
+static u32 art_to_tsc_numerator __ro_after_init;
+static u32 art_to_tsc_denominator __ro_after_init;
+static u64 art_to_tsc_offset __ro_after_init;
 struct clocksource *art_related_clocksource;
 
 struct cyc2ns {
@@ -282,8 +282,8 @@ int __init notsc_setup(char *str)
 
 __setup("notsc", notsc_setup);
 
-static int no_sched_irq_time;
-static int no_tsc_watchdog;
+static int no_sched_irq_time __ro_after_init;
+static int no_tsc_watchdog __ro_after_init;
 
 static int __init tsc_setup(char *str)
 {

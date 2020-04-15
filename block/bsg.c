@@ -45,7 +45,7 @@ static DEFINE_IDR(bsg_minor_idr);
 static struct hlist_head bsg_device_list[BSG_LIST_ARRAY_SIZE];
 
 static struct class *bsg_class;
-static int bsg_major;
+static int bsg_major __ro_after_init;
 
 static inline struct hlist_head *bsg_dev_idx_hash(int index)
 {
@@ -472,7 +472,7 @@ int bsg_scsi_register_queue(struct request_queue *q, struct device *parent)
 }
 EXPORT_SYMBOL_GPL(bsg_scsi_register_queue);
 
-static struct cdev bsg_cdev;
+static struct cdev bsg_cdev __ro_after_init;
 
 static char *bsg_devnode(struct device *dev, umode_t *mode)
 {

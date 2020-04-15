@@ -18,7 +18,7 @@
 
 #include "../perf_event.h"
 
-static u32 ibs_caps;
+static u32 ibs_caps __ro_after_init;
 
 #if defined(CONFIG_PERF_EVENTS) && defined(CONFIG_CPU_SUP_AMD)
 

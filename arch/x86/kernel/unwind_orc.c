@@ -19,8 +19,8 @@ static DEFINE_MUTEX(sort_mutex);
 int *cur_orc_ip_table = __start_orc_unwind_ip;
 struct orc_entry *cur_orc_table = __start_orc_unwind;
 
-unsigned int lookup_num_blocks;
-bool orc_init;
+unsigned int lookup_num_blocks __ro_after_init;
+bool orc_init __ro_after_init;
 
 static inline unsigned long orc_ip(const int *ip)
 {

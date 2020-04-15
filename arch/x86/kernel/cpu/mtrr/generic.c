@@ -32,8 +32,8 @@ static struct fixed_range_block fixed_range_blocks[] = {
 };
 
 static unsigned long smp_changes_mask;
-static int mtrr_state_set;
-u64 mtrr_tom2;
+static int mtrr_state_set __ro_after_init;
+u64 mtrr_tom2 __ro_after_init;
 
 struct mtrr_state_type mtrr_state;
 EXPORT_SYMBOL_GPL(mtrr_state);

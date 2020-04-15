@@ -1176,8 +1176,8 @@ static void snd_msnd_pnp_remove(struct pnp_card_link *pcard)
 	pnp_set_card_drvdata(pcard, NULL);
 }
 
-static int isa_registered;
-static int pnp_registered;
+static int isa_registered __ro_after_init;
+static int pnp_registered __ro_after_init;
 
 static const struct pnp_card_device_id msnd_pnpids[] = {
 	/* Pinnacle PnP */

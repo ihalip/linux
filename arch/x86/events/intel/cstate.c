@@ -140,7 +140,7 @@ struct perf_cstate_msr {
 
 /* cstate_core PMU */
 static struct pmu cstate_core_pmu;
-static bool has_cstate_core;
+static bool has_cstate_core __ro_after_init;
 
 enum perf_cstate_core_events {
 	PERF_CSTATE_CORE_C1_RES = 0,
@@ -156,7 +156,7 @@ PMU_EVENT_ATTR_STRING(c3-residency, attr_cstate_core_c3, "event=0x01");
 PMU_EVENT_ATTR_STRING(c6-residency, attr_cstate_core_c6, "event=0x02");
 PMU_EVENT_ATTR_STRING(c7-residency, attr_cstate_core_c7, "event=0x03");
 
-static unsigned long core_msr_mask;
+static unsigned long core_msr_mask __ro_after_init;
 
 PMU_EVENT_GROUP(events, cstate_core_c1);
 PMU_EVENT_GROUP(events, cstate_core_c3);
@@ -221,7 +221,7 @@ static const struct attribute_group *core_attr_groups[] = {
 
 /* cstate_pkg PMU */
 static struct pmu cstate_pkg_pmu;
-static bool has_cstate_pkg;
+static bool has_cstate_pkg __ro_after_init;
 
 enum perf_cstate_pkg_events {
 	PERF_CSTATE_PKG_C2_RES = 0,
@@ -243,7 +243,7 @@ PMU_EVENT_ATTR_STRING(c8-residency,  attr_cstate_pkg_c8,  "event=0x04");
 PMU_EVENT_ATTR_STRING(c9-residency,  attr_cstate_pkg_c9,  "event=0x05");
 PMU_EVENT_ATTR_STRING(c10-residency, attr_cstate_pkg_c10, "event=0x06");
 
-static unsigned long pkg_msr_mask;
+static unsigned long pkg_msr_mask __ro_after_init;
 
 PMU_EVENT_GROUP(events, cstate_pkg_c2);
 PMU_EVENT_GROUP(events, cstate_pkg_c3);

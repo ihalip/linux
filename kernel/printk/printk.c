@@ -291,7 +291,7 @@ enum con_msg_format_flags {
 	MSG_FORMAT_SYSLOG	= (1 << 0),
 };
 
-static int console_msg_format = MSG_FORMAT_DEFAULT;
+static int console_msg_format __ro_after_init = MSG_FORMAT_DEFAULT;
 
 /*
  * The printk log buffer consists of a chain of concatenated variable
@@ -458,7 +458,7 @@ static u32 clear_idx;
 #define LOG_BUF_LEN_MAX (u32)(1 << 31)
 static char __log_buf[__LOG_BUF_LEN] __aligned(LOG_ALIGN);
 static char *log_buf = __log_buf;
-static u32 log_buf_len = __LOG_BUF_LEN;
+static u32 log_buf_len __ro_after_init = __LOG_BUF_LEN;
 
 /*
  * We cannot access per-CPU data (e.g. per-CPU flush irq_work) before
@@ -1231,8 +1231,11 @@ static bool suppress_message_printing(int level)
 
 #ifdef CONFIG_BOOT_PRINTK_DELAY
 
-static int boot_delay; /* msecs delay after each printk during bootup */
-static unsigned long long loops_per_msec;	/* based on boot_delay */
+/* msecs delay after each printk during bootup */
+static int boot_delay __ro_after_init;
+
+/* based on boot_delay */
+static unsigned long long loops_per_msec __ro_after_init;
 
 static int __init boot_delay_setup(char *str)
 {

@@ -208,7 +208,7 @@ static struct audit_chunk *alloc_chunk(int count)
 }
 
 enum {HASH_SIZE = 128};
-static struct list_head chunk_hash_heads[HASH_SIZE];
+static struct list_head chunk_hash_heads[HASH_SIZE] __ro_after_init;
 static __cacheline_aligned_in_smp DEFINE_SPINLOCK(hash_lock);
 
 /* Function to return search key in our hash from inode. */

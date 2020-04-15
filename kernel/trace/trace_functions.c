@@ -738,27 +738,27 @@ ftrace_cpudump_callback(struct trace_array *tr, struct ftrace_hash *hash,
 					   "1", enable);
 }
 
-static struct ftrace_func_command ftrace_traceon_cmd = {
+static struct ftrace_func_command ftrace_traceon_cmd __ro_after_init = {
 	.name			= "traceon",
 	.func			= ftrace_trace_onoff_callback,
 };
 
-static struct ftrace_func_command ftrace_traceoff_cmd = {
+static struct ftrace_func_command ftrace_traceoff_cmd __ro_after_init = {
 	.name			= "traceoff",
 	.func			= ftrace_trace_onoff_callback,
 };
 
-static struct ftrace_func_command ftrace_stacktrace_cmd = {
+static struct ftrace_func_command ftrace_stacktrace_cmd __ro_after_init = {
 	.name			= "stacktrace",
 	.func			= ftrace_stacktrace_callback,
 };
 
-static struct ftrace_func_command ftrace_dump_cmd = {
+static struct ftrace_func_command ftrace_dump_cmd __ro_after_init = {
 	.name			= "dump",
 	.func			= ftrace_dump_callback,
 };
 
-static struct ftrace_func_command ftrace_cpudump_cmd = {
+static struct ftrace_func_command ftrace_cpudump_cmd __ro_after_init = {
 	.name			= "cpudump",
 	.func			= ftrace_cpudump_callback,
 };

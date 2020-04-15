@@ -26,17 +26,21 @@
 
 static DEFINE_PER_CPU(int, x2apic_extra_bits);
 
-static enum uv_system_type	uv_system_type;
-static int			uv_hubbed_system;
-static int			uv_hubless_system;
-static u64			gru_start_paddr, gru_end_paddr;
-static u64			gru_dist_base, gru_first_node_paddr = -1LL, gru_last_node_paddr;
-static u64			gru_dist_lmask, gru_dist_umask;
-static union uvh_apicid		uvh_apicid;
+static enum uv_system_type	uv_system_type __ro_after_init;
+static int			uv_hubbed_system __ro_after_init;
+static int			uv_hubless_system __ro_after_init;
+static u64			gru_start_paddr __ro_after_init;
+static u64			gru_end_paddr __ro_after_init;
+static u64			gru_dist_base __ro_after_init;
+static u64			gru_first_node_paddr __ro_after_init = -1LL;
+static u64			gru_last_node_paddr __ro_after_init;
+static u64			gru_dist_lmask __ro_after_init;
+static u64			gru_dist_umask __ro_after_init;
+static union uvh_apicid		uvh_apicid __ro_after_init;
 
 /* Unpack OEM/TABLE ID's to be NULL terminated strings */
-static u8 oem_id[ACPI_OEM_ID_SIZE + 1];
-static u8 oem_table_id[ACPI_OEM_TABLE_ID_SIZE + 1];
+static u8 oem_id[ACPI_OEM_ID_SIZE + 1] __ro_after_init;
+static u8 oem_table_id[ACPI_OEM_TABLE_ID_SIZE + 1] __ro_after_init;
 
 /* Information derived from CPUID: */
 static struct {
@@ -46,7 +50,7 @@ static struct {
 	unsigned int pnode_mask;
 	unsigned int gpa_shift;
 	unsigned int gnode_shift;
-} uv_cpuid;
+} uv_cpuid __ro_after_init;
 
 int uv_min_hub_revision_id;
 EXPORT_SYMBOL_GPL(uv_min_hub_revision_id);

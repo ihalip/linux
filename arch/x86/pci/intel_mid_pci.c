@@ -49,7 +49,7 @@
 #define PCI_FIXED_BAR_4_SIZE	0x14
 #define PCI_FIXED_BAR_5_SIZE	0x1c
 
-static int pci_soc_mode;
+static int pci_soc_mode __ro_after_init;
 
 /**
  * fixed_bar_cap - return the offset of the fixed BAR cap if found

@@ -123,7 +123,8 @@ static DEFINE_SPINLOCK(xen_reservation_lock);
 DEFINE_PER_CPU(unsigned long, xen_cr3);	 /* cr3 stored as physaddr */
 DEFINE_PER_CPU(unsigned long, xen_current_cr3);	 /* actual vcpu cr3 */
 
-static phys_addr_t xen_pt_base, xen_pt_size __initdata;
+static phys_addr_t xen_pt_base __ro_after_init;
+static phys_addr_t xen_pt_size __initdata;
 
 static DEFINE_STATIC_KEY_FALSE(xen_struct_pages_ready);
 

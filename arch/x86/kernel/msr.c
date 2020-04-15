@@ -40,7 +40,7 @@
 #include <asm/msr.h>
 
 static struct class *msr_class;
-static enum cpuhp_state cpuhp_msr_state;
+static enum cpuhp_state cpuhp_msr_state __ro_after_init;
 
 static ssize_t msr_read(struct file *file, char __user *buf,
 			size_t count, loff_t *ppos)

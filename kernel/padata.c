@@ -728,7 +728,7 @@ static int padata_cpu_dead(unsigned int cpu, struct hlist_node *node)
 	return ret;
 }
 
-static enum cpuhp_state hp_online;
+static enum cpuhp_state hp_online __ro_after_init;
 #endif
 
 static void __padata_free(struct padata_instance *pinst)

@@ -57,14 +57,14 @@ static u32 *iommu_gatt_base;		/* Remapping table */
  * to trigger bugs with some popular PCI cards, in particular 3ware (but
  * has been also also seen with Qlogic at least).
  */
-static int iommu_fullflush = 1;
+static int iommu_fullflush __ro_after_init = 1;
 
 /* Allocation bitmap for the remapping area: */
 static DEFINE_SPINLOCK(iommu_bitmap_lock);
 /* Guarded by iommu_bitmap_lock: */
 static unsigned long *iommu_gart_bitmap;
 
-static u32 gart_unmapped_entry;
+static u32 gart_unmapped_entry __ro_after_init;
 
 #define GPTE_VALID    1
 #define GPTE_COHERENT 2

@@ -113,7 +113,7 @@
  */
 
 static atomic_t stopping_cpu = ATOMIC_INIT(-1);
-static bool smp_no_nmi_ipi = false;
+static bool smp_no_nmi_ipi __ro_after_init;
 
 static int smp_stop_nmi_callback(unsigned int val, struct pt_regs *regs)
 {

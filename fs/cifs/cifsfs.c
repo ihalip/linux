@@ -121,7 +121,7 @@ struct workqueue_struct	*cifsiod_wq;
 struct workqueue_struct	*decrypt_wq;
 struct workqueue_struct	*fileinfo_put_wq;
 struct workqueue_struct	*cifsoplockd_wq;
-__u32 cifs_lock_secret;
+__u32 cifs_lock_secret __ro_after_init;
 
 /*
  * Bumps refcount for cifs super block.

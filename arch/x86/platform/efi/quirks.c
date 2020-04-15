@@ -79,7 +79,7 @@ struct quark_security_header {
 
 static const efi_char16_t efi_dummy_name[] = L"DUMMY";
 
-static bool efi_no_storage_paranoia;
+static bool efi_no_storage_paranoia __ro_after_init;
 
 /*
  * Some firmware implementations refuse to boot if there's insufficient

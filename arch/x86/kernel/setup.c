@@ -65,8 +65,8 @@ RESERVE_BRK(dmi_alloc, 65536);
  * at link time, with RESERVE_BRK*() facility reserving additional
  * chunks.
  */
-unsigned long _brk_start = (unsigned long)__brk_base;
-unsigned long _brk_end   = (unsigned long)__brk_base;
+unsigned long _brk_start __ro_after_init = (unsigned long)__brk_base;
+unsigned long _brk_end   __ro_after_init = (unsigned long)__brk_base;
 
 struct boot_params boot_params;
 
@@ -719,7 +719,7 @@ static void __init e820_add_kernel_range(void)
 	e820__range_add(start, size, E820_TYPE_RAM);
 }
 
-static unsigned reserve_low = CONFIG_X86_RESERVE_LOW << 10;
+static unsigned reserve_low __ro_after_init = CONFIG_X86_RESERVE_LOW << 10;
 
 static int __init parse_reservelow(char *p)
 {

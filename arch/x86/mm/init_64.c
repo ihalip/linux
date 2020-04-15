@@ -104,7 +104,7 @@ EXPORT_SYMBOL_GPL(__supported_pte_mask);
 /* Used in PAGE_KERNEL_* macros which are reasonably used out-of-tree: */
 EXPORT_SYMBOL(__default_kernel_pte_mask);
 
-int force_personality32;
+int force_personality32 __ro_after_init;
 
 /*
  * noexec32=on|off
@@ -1359,7 +1359,7 @@ int kern_addr_valid(unsigned long addr)
 #define MEM_SIZE_FOR_LARGE_BLOCK (64UL << 30)
 
 /* Adjustable memory block size */
-static unsigned long set_memory_block_size;
+static unsigned long set_memory_block_size __ro_after_init;
 int __init set_memory_block_size_order(unsigned int order)
 {
 	unsigned long size = 1UL << order;

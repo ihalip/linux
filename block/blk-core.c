@@ -49,7 +49,7 @@
 #include "blk-rq-qos.h"
 
 #ifdef CONFIG_DEBUG_FS
-struct dentry *blk_debugfs_root;
+struct dentry *blk_debugfs_root __ro_after_init;
 #endif
 
 EXPORT_TRACEPOINT_SYMBOL_GPL(block_bio_remap);

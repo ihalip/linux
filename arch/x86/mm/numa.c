@@ -19,7 +19,7 @@
 
 #include "numa_internal.h"
 
-int numa_off;
+int numa_off __ro_after_init;
 nodemask_t numa_nodes_parsed __initdata;
 
 struct pglist_data *node_data[MAX_NUMNODES] __read_mostly;
@@ -28,8 +28,8 @@ EXPORT_SYMBOL(node_data);
 static struct numa_meminfo numa_meminfo __initdata_or_meminfo;
 static struct numa_meminfo numa_reserved_meminfo __initdata_or_meminfo;
 
-static int numa_distance_cnt;
-static u8 *numa_distance;
+static int numa_distance_cnt __ro_after_init;
+static u8 *numa_distance __ro_after_init;
 
 static __init int numa_setup(char *opt)
 {

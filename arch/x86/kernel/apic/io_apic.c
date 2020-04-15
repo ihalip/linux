@@ -81,7 +81,7 @@
 static DEFINE_RAW_SPINLOCK(ioapic_lock);
 static DEFINE_MUTEX(ioapic_mutex);
 static unsigned int ioapic_dynirq_base;
-static int ioapic_initialized;
+static int ioapic_initialized __ro_after_init;
 
 struct irq_pin_list {
 	struct list_head list;

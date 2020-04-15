@@ -332,8 +332,8 @@ static int mce_severity_intel(struct mce *m, int tolerant, char **msg, bool is_e
 }
 
 /* Default to mce_severity_intel */
-int (*mce_severity)(struct mce *m, int tolerant, char **msg, bool is_excp) =
-		    mce_severity_intel;
+int (*mce_severity)(struct mce *m, int tolerant, char **msg, bool is_excp)
+		    __ro_after_init = mce_severity_intel;
 
 void __init mcheck_vendor_init_severity(void)
 {

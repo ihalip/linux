@@ -7,7 +7,7 @@
 #include <asm/proto.h>
 #include <asm/cpufeature.h>
 
-static int disable_nx;
+static int disable_nx __ro_after_init;
 
 /*
  * noexec = on|off

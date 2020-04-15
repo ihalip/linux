@@ -112,9 +112,9 @@ static const struct svm_direct_access_msrs {
 
 /* enable NPT for AMD64 and X86 with PAE */
 #if defined(CONFIG_X86_64) || defined(CONFIG_X86_PAE)
-bool npt_enabled = true;
+static bool npt_enabled __ro_after_init = true;
 #else
-bool npt_enabled;
+static bool npt_enabled __ro_after_init;
 #endif
 
 /*

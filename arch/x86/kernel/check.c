@@ -27,8 +27,8 @@ static unsigned __read_mostly corruption_check_period = 60; /* seconds */
 static struct scan_area {
 	u64 addr;
 	u64 size;
-} scan_areas[MAX_SCAN_AREAS];
-static int num_scan_areas;
+} scan_areas[MAX_SCAN_AREAS] __ro_after_init;
+static int num_scan_areas __ro_after_init;
 
 static __init int set_corruption_check(char *arg)
 {

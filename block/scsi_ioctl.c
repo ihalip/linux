@@ -27,7 +27,7 @@ struct blk_cmd_filter {
 	unsigned long write_ok[BLK_SCSI_CMD_PER_LONG];
 };
 
-static struct blk_cmd_filter blk_default_cmd_filter;
+static struct blk_cmd_filter blk_default_cmd_filter __ro_after_init;
 
 /* Command group 3 is reserved and should never be used.  */
 const unsigned char scsi_command_size_tbl[8] =

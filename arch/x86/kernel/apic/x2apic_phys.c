@@ -5,7 +5,7 @@
 
 #include "local.h"
 
-int x2apic_phys;
+int x2apic_phys __ro_after_init;
 
 static struct apic apic_x2apic_phys;
 

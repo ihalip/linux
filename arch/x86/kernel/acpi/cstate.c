@@ -92,7 +92,7 @@ struct cstate_entry {
 };
 static struct cstate_entry __percpu *cpu_cstate_entry;	/* per CPU ptr */
 
-static short mwait_supported[ACPI_PROCESSOR_MAX_POWER];
+static short mwait_supported[ACPI_PROCESSOR_MAX_POWER] __ro_after_init;
 
 #define NATIVE_CSTATE_BEYOND_HALT	(2)
 

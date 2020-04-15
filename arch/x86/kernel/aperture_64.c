@@ -65,7 +65,8 @@ int fix_aperture __initdata = 1;
  * Trying to dump this area via /proc/vmcore may crash the machine, so exclude
  * it from vmcore.
  */
-static unsigned long aperture_pfn_start, aperture_page_count;
+static unsigned long aperture_pfn_start  __ro_after_init;
+static unsigned long aperture_page_count __ro_after_init;
 
 static int gart_mem_pfn_is_ram(unsigned long pfn)
 {

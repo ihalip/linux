@@ -40,13 +40,14 @@ DEFINE_PER_CPU(struct resctrl_pqr_state, pqr_state);
  * Used to store the max resource name width and max resource data width
  * to display the schemata in a tabular format
  */
-int max_name_width, max_data_width;
+int max_name_width __ro_after_init;
+int max_data_width __ro_after_init;
 
 /*
  * Global boolean for rdt_alloc which is true if any
  * resource allocation is enabled.
  */
-bool rdt_alloc_capable;
+bool rdt_alloc_capable __ro_after_init;
 
 static void
 mba_wrmsr_intel(struct rdt_domain *d, struct msr_param *m,
@@ -956,7 +957,7 @@ static __init void rdt_init_res_defs(void)
 		rdt_init_res_defs_amd();
 }
 
-static enum cpuhp_state rdt_online;
+static enum cpuhp_state rdt_online __ro_after_init;
 
 static int __init resctrl_late_init(void)
 {

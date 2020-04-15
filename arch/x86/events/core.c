@@ -1617,8 +1617,8 @@ perf_event_nmi_handler(unsigned int cmd, struct pt_regs *regs)
 }
 NOKPROBE_SYMBOL(perf_event_nmi_handler);
 
-struct event_constraint emptyconstraint;
-struct event_constraint unconstrained;
+struct event_constraint emptyconstraint __ro_after_init;
+struct event_constraint unconstrained __ro_after_init;
 
 static int x86_pmu_prepare_cpu(unsigned int cpu)
 {
@@ -1818,8 +1818,8 @@ ssize_t x86_event_sysfs_show(char *page, u64 config, u64 event)
 	return ret;
 }
 
-static struct attribute_group x86_pmu_attr_group;
-static struct attribute_group x86_pmu_caps_group;
+static struct attribute_group x86_pmu_attr_group __ro_after_init;
+static struct attribute_group x86_pmu_caps_group __ro_after_init;
 
 static int __init init_hw_perf_events(void)
 {

@@ -66,7 +66,7 @@ DEFINE_PER_CPU(struct uv_cpu_nmi_s, uv_cpu_nmi);
 #define PCH_PCR_GPIO_1_BASE	0xfdae0000ul
 #define PCH_PCR_GPIO_ADDRESS(offset) (int *)((u64)(pch_base) | (u64)(offset))
 
-static u64 *pch_base;
+static u64 *pch_base __ro_after_init;
 static unsigned long nmi_mmr;
 static unsigned long nmi_mmr_clear;
 static unsigned long nmi_mmr_pending;

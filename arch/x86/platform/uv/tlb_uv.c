@@ -35,9 +35,9 @@ static const int timeout_base_ns[] = {
 		167772160
 };
 
-static int timeout_us;
+static int timeout_us __ro_after_init;
 static bool nobau = true;
-static int nobau_perm;
+static int nobau_perm __ro_after_init;
 
 /* tunables: */
 static int max_concurr		= MAX_BAU_CONCURRENT;

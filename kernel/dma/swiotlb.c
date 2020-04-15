@@ -62,7 +62,7 @@
  */
 #define IO_TLB_MIN_SLABS ((1<<20) >> IO_TLB_SHIFT)
 
-enum swiotlb_force swiotlb_force;
+enum swiotlb_force swiotlb_force __ro_after_init;
 
 /*
  * Used to do a quick range check in swiotlb_tbl_unmap_single and

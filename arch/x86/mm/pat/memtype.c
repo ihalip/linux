@@ -97,7 +97,7 @@ bool pat_enabled(void)
 }
 EXPORT_SYMBOL_GPL(pat_enabled);
 
-int pat_debug_enable;
+int pat_debug_enable __ro_after_init;
 
 static int __init pat_debug_setup(char *str)
 {

@@ -134,25 +134,25 @@ void (*__initdata late_time_init)(void);
 /* Untouched command line saved by arch-specific code. */
 char __initdata boot_command_line[COMMAND_LINE_SIZE];
 /* Untouched saved command line (eg. for /proc) */
-char *saved_command_line;
+char *saved_command_line __ro_after_init;
 /* Command line for parameter parsing */
-static char *static_command_line;
+static char *static_command_line __ro_after_init;
 /* Untouched extra command line */
-static char *extra_command_line;
+static char *extra_command_line __ro_after_init;
 /* Extra init arguments */
-static char *extra_init_args;
+static char *extra_init_args __ro_after_init;
 
 #ifdef CONFIG_BOOT_CONFIG
 /* Is bootconfig on command line? */
-static bool bootconfig_found;
-static bool initargs_found;
+static bool bootconfig_found __ro_after_init;
+static bool initargs_found __ro_after_init;
 #else
 # define bootconfig_found false
 # define initargs_found false
 #endif
 
-static char *execute_command;
-static char *ramdisk_execute_command;
+static char *execute_command __ro_after_init;
+static char *ramdisk_execute_command __ro_after_init;
 
 /*
  * Used to generate warnings if static_key manipulation functions are used
@@ -182,8 +182,10 @@ static int __init set_reset_devices(char *str)
 __setup("reset_devices", set_reset_devices);
 
 static const char *argv_init[MAX_INIT_ARGS+2] = { "init", NULL, };
-const char *envp_init[MAX_INIT_ENVS+2] = { "HOME=/", "TERM=linux", NULL, };
-static const char *panic_later, *panic_param;
+const char *envp_init[MAX_INIT_ENVS+2] __ro_after_init = {
+					       "HOME=/", "TERM=linux", NULL, };
+static const char *panic_later __ro_after_init;
+static const char *panic_param __ro_after_init;
 
 extern const struct obs_kernel_param __setup_start[], __setup_end[];
 

@@ -60,7 +60,7 @@ struct uv_rtc_timer_head {
  */
 static struct uv_rtc_timer_head		**blade_info __read_mostly;
 
-static int				uv_rtc_evt_enable;
+static int				uv_rtc_evt_enable __ro_after_init;
 
 /*
  * Hardware interface routines
