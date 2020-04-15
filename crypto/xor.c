@@ -21,7 +21,7 @@
 #endif
 
 /* The xor routines to use.  */
-static struct xor_block_template *active_template;
+static struct xor_block_template *active_template __ro_after_init;
 
 void
 xor_blocks(unsigned int src_count, unsigned int bytes, void *dest, void **srcs)
