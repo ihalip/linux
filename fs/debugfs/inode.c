@@ -34,7 +34,7 @@
 
 static struct vfsmount *debugfs_mount;
 static int debugfs_mount_count;
-static bool debugfs_registered;
+static bool debugfs_registered __ro_after_init;
 
 /*
  * Don't allow access attributes to be changed whilst the kernel is locked down
