@@ -59,7 +59,7 @@ static int kcore_need_update = 1;
  * Returns > 0 for RAM pages, 0 for non-RAM pages, < 0 on error
  * Same as oldmem_pfn_is_ram in vmcore
  */
-static int (*mem_pfn_is_ram)(unsigned long pfn);
+static int (*mem_pfn_is_ram)(unsigned long pfn) __ro_after_init;
 
 int __init register_mem_pfn_is_ram(int (*fn)(unsigned long pfn))
 {
@@ -599,10 +599,10 @@ static struct notifier_block kcore_callback_nb __meminitdata = {
 	.priority = 0,
 };
 
-static struct kcore_list kcore_vmalloc;
+static struct kcore_list kcore_vmalloc __ro_after_init;
 
 #ifdef CONFIG_ARCH_PROC_KCORE_TEXT
-static struct kcore_list kcore_text;
+static struct kcore_list kcore_text __ro_after_init;
 /*
  * If defined, special segment is used for mapping kernel text instead of
  * direct-map area. We need to create special TEXT section.
@@ -621,7 +621,7 @@ static void __init proc_kcore_text_init(void)
 /*
  * MODULES_VADDR has no intersection with VMALLOC_ADDR.
  */
-static struct kcore_list kcore_modules;
+static struct kcore_list kcore_modules __ro_after_init;
 static void __init add_modules_range(void)
 {
 	if (MODULES_VADDR != VMALLOC_START && MODULES_END != VMALLOC_END) {

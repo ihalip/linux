@@ -38,13 +38,13 @@ static LIST_HEAD(vmcore_list);
 
 /* Stores the pointer to the buffer containing kernel elf core headers. */
 static char *elfcorebuf;
-static size_t elfcorebuf_sz;
-static size_t elfcorebuf_sz_orig;
+static size_t elfcorebuf_sz __ro_after_init;
+static size_t elfcorebuf_sz_orig __ro_after_init;
 
 static char *elfnotes_buf;
 static size_t elfnotes_sz;
 /* Size of all notes minus the device dump notes */
-static size_t elfnotes_orig_sz;
+static size_t elfnotes_orig_sz __ro_after_init;
 
 /* Total size of vmcore file. */
 static u64 vmcore_size;
