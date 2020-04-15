@@ -44,15 +44,17 @@ EXPORT_SYMBOL(acpi_disabled);
 
 #define PREFIX			"ACPI: "
 
-int acpi_noirq;				/* skip ACPI IRQ initialization */
-static int acpi_nobgrt;			/* skip ACPI BGRT */
-int acpi_pci_disabled;		/* skip ACPI PCI scan and IRQ initialization */
+int acpi_noirq __ro_after_init;		/* skip ACPI IRQ initialization */
+int acpi_nobgrt __ro_after_init;	/* skip ACPI BGRT */
+
+/* skip ACPI PCI scan and IRQ initialization */
+int acpi_pci_disabled __ro_after_init;
 EXPORT_SYMBOL(acpi_pci_disabled);
 
-int acpi_lapic;
-int acpi_ioapic;
-int acpi_strict;
-int acpi_disable_cmcff;
+int acpi_lapic __ro_after_init;
+int acpi_ioapic __ro_after_init;
+int acpi_strict __ro_after_init;
+int acpi_disable_cmcff __ro_after_init;
 
 /* ACPI SCI override configuration */
 u8 acpi_sci_flags __initdata;
@@ -691,8 +693,8 @@ static void acpi_unregister_gsi_ioapic(u32 gsi)
 #endif
 
 int (*__acpi_register_gsi)(struct device *dev, u32 gsi,
-			   int trigger, int polarity) = acpi_register_gsi_pic;
-void (*__acpi_unregister_gsi)(u32 gsi) = NULL;
+	int trigger, int polarity) __ro_after_init = acpi_register_gsi_pic;
+void (*__acpi_unregister_gsi)(u32 gsi) __ro_after_init = NULL;
 
 #ifdef CONFIG_ACPI_SLEEP
 int (*acpi_suspend_lowlevel)(void) = x86_acpi_suspend_lowlevel;
