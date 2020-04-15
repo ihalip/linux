@@ -75,7 +75,7 @@ static enum pti_mode {
 	PTI_AUTO = 0,
 	PTI_FORCE_OFF,
 	PTI_FORCE_ON
-} pti_mode;
+} pti_mode __ro_after_init;
 
 void __init pti_check_boottime_disable(void)
 {
