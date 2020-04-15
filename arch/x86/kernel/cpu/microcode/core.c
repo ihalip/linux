@@ -45,7 +45,7 @@
 static struct microcode_ops	*microcode_ops;
 static bool dis_ucode_ldr = true;
 
-bool initrd_gone;
+bool initrd_gone __ro_after_init;
 
 LIST_HEAD(microcode_cache);
 
