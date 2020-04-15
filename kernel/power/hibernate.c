@@ -36,11 +36,11 @@
 #include "power.h"
 
 
-static int nocompress;
-static int noresume;
-static int nohibernate;
-static int resume_wait;
-static unsigned int resume_delay;
+static int nocompress __ro_after_init;
+static int noresume __ro_after_init;
+static int nohibernate __ro_after_init;
+static int resume_wait __ro_after_init;
+static unsigned int resume_delay __ro_after_init;
 static char resume_file[256] = CONFIG_PM_STD_PARTITION;
 dev_t swsusp_resume_device;
 sector_t swsusp_resume_block;
