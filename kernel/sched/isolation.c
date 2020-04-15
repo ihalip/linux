@@ -12,7 +12,7 @@
 DEFINE_STATIC_KEY_FALSE(housekeeping_overridden);
 EXPORT_SYMBOL_GPL(housekeeping_overridden);
 static cpumask_var_t housekeeping_mask;
-static unsigned int housekeeping_flags;
+static unsigned int housekeeping_flags __ro_after_init;
 
 bool housekeeping_enabled(enum hk_flags flags)
 {
