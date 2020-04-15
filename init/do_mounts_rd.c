@@ -291,9 +291,10 @@ int __init rd_load_disk(int n)
 	return rd_load_image("/dev/root");
 }
 
-static int exit_code;
-static int decompress_error;
-static int crd_infd, crd_outfd;
+static int exit_code __ro_after_init;
+static int decompress_error __ro_after_init;
+static int crd_infd __ro_after_init;
+static int crd_outfd __ro_after_init;
 
 static long __init compr_fill(void *buf, unsigned long len)
 {

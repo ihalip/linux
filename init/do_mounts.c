@@ -29,12 +29,12 @@
 
 int __initdata rd_doload;	/* 1 = load RAM disk, 0 = don't load */
 
-int root_mountflags = MS_RDONLY | MS_SILENT;
+int root_mountflags __ro_after_init = MS_RDONLY | MS_SILENT;
 static char * __initdata root_device_name;
 static char __initdata saved_root_name[64];
 static int root_wait;
 
-dev_t ROOT_DEV;
+dev_t ROOT_DEV __ro_after_init;
 
 static int __init load_ramdisk(char *str)
 {
@@ -686,7 +686,7 @@ out:
 	ksys_chroot(".");
 }
 
-static bool is_tmpfs;
+static bool is_tmpfs __ro_after_init;
 static int rootfs_init_fs_context(struct fs_context *fc)
 {
 	if (IS_ENABLED(CONFIG_TMPFS) && is_tmpfs)

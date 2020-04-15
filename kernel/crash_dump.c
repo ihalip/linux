@@ -9,7 +9,7 @@
  * If we have booted due to a crash, max_pfn will be a very low value. We need
  * to know the amount of memory that the previous kernel used.
  */
-unsigned long saved_max_pfn;
+unsigned long saved_max_pfn __ro_after_init;
 
 /*
  * stores the physical address of elf header of crash image
@@ -18,13 +18,13 @@ unsigned long saved_max_pfn;
  * is_kdump_kernel() to determine if we are booting after a panic. Hence put
  * it under CONFIG_CRASH_DUMP and not CONFIG_PROC_VMCORE.
  */
-unsigned long long elfcorehdr_addr = ELFCORE_ADDR_MAX;
+unsigned long long elfcorehdr_addr __ro_after_init = ELFCORE_ADDR_MAX;
 EXPORT_SYMBOL_GPL(elfcorehdr_addr);
 
 /*
  * stores the size of elf header of crash image
  */
-unsigned long long elfcorehdr_size;
+unsigned long long elfcorehdr_size __ro_after_init;
 
 /*
  * elfcorehdr= specifies the location of elf core header stored by the crashed

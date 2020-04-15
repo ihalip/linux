@@ -41,7 +41,7 @@ static LIST_HEAD(tracepoint_module_list);
 static DEFINE_MUTEX(tracepoints_mutex);
 
 static struct rcu_head *early_probes;
-static bool ok_to_free_tracepoints;
+static bool ok_to_free_tracepoints __ro_after_init;
 
 /*
  * Note about RCU :

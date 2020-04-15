@@ -1485,8 +1485,8 @@ EXPORT_SYMBOL(__devm_release_region);
 #define MAXRESERVE 4
 static int __init reserve_setup(char *str)
 {
-	static int reserved;
-	static struct resource reserve[MAXRESERVE];
+	static int reserved __ro_after_init;
+	static struct resource reserve[MAXRESERVE] __ro_after_init;
 
 	for (;;) {
 		unsigned int io_start, io_num;
@@ -1570,7 +1570,7 @@ int iomem_map_sanity_check(resource_size_t addr, unsigned long size)
 }
 
 #ifdef CONFIG_STRICT_DEVMEM
-static int strict_iomem_checks = 1;
+static int strict_iomem_checks __ro_after_init = 1;
 #else
 static int strict_iomem_checks;
 #endif

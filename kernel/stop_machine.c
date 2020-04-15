@@ -45,7 +45,7 @@ struct cpu_stopper {
 };
 
 static DEFINE_PER_CPU(struct cpu_stopper, cpu_stopper);
-static bool stop_machine_initialized = false;
+static bool stop_machine_initialized __ro_after_init;
 
 /* static data for stop_cpus */
 static DEFINE_MUTEX(stop_cpus_mutex);

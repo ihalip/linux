@@ -12,8 +12,8 @@
 #include <linux/smp.h>
 #include <linux/percpu.h>
 
-unsigned long lpj_fine;
-unsigned long preset_lpj;
+unsigned long lpj_fine __ro_after_init;
+unsigned long preset_lpj __ro_after_init;
 static int __init lpj_setup(char *str)
 {
 	preset_lpj = simple_strtoul(str,NULL,0);

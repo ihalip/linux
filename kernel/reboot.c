@@ -41,10 +41,10 @@ enum reboot_mode panic_reboot_mode = REBOOT_UNDEFINED;
  * suppress DMI scanning for reboot quirks.  Without it, it's
  * impossible to override a faulty reboot quirk without recompiling.
  */
-int reboot_default = 1;
-int reboot_cpu;
+int reboot_default  __ro_after_init = 1;
+int reboot_cpu __ro_after_init;
 enum reboot_type reboot_type = BOOT_ACPI;
-int reboot_force;
+int reboot_force __ro_after_init;
 
 /*
  * If set, this is used for preparing the system to power off.

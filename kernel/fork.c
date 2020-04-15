@@ -333,10 +333,10 @@ static struct kmem_cache *signal_cachep;
 struct kmem_cache *sighand_cachep;
 
 /* SLAB cache for files_struct structures (tsk->files) */
-struct kmem_cache *files_cachep;
+struct kmem_cache *files_cachep __ro_after_init;
 
 /* SLAB cache for fs_struct structures (tsk->fs) */
-struct kmem_cache *fs_cachep;
+struct kmem_cache *fs_cachep __ro_after_init;
 
 /* SLAB cache for vm_area_struct structures */
 static struct kmem_cache *vm_area_cachep;
@@ -961,7 +961,8 @@ free_tsk:
 
 __cacheline_aligned_in_smp DEFINE_SPINLOCK(mmlist_lock);
 
-static unsigned long default_dump_filter = MMF_DUMP_FILTER_DEFAULT;
+static unsigned long default_dump_filter __ro_after_init =
+				MMF_DUMP_FILTER_DEFAULT;
 
 static int __init coredump_filter_setup(char *s)
 {

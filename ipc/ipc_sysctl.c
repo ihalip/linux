@@ -113,9 +113,9 @@ static int proc_ipc_sem_dointvec(struct ctl_table *table, int write,
 #define proc_ipc_sem_dointvec	   NULL
 #endif
 
-int ipc_mni = IPCMNI;
-int ipc_mni_shift = IPCMNI_SHIFT;
-int ipc_min_cycle = RADIX_TREE_MAP_SIZE;
+int ipc_mni __ro_after_init = IPCMNI;
+int ipc_mni_shift __ro_after_init = IPCMNI_SHIFT;
+int ipc_min_cycle __ro_after_init = RADIX_TREE_MAP_SIZE;
 
 static struct ctl_table ipc_kern_table[] = {
 	{
