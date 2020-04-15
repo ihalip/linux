@@ -89,7 +89,7 @@ static int kgdb_con_registered;
 /* determine if kgdb console output should be used */
 static int kgdb_use_con;
 /* Flag for alternate operations for early debugging */
-bool dbg_is_early = true;
+bool dbg_is_early __ro_after_init = true;
 /* Next cpu to become the master debug core */
 int dbg_switch_cpu;
 
@@ -148,7 +148,7 @@ atomic_t			kgdb_cpu_doing_single_step = ATOMIC_INIT(-1);
  * the other CPUs might interfere with your debugging context, so
  * use this with care:
  */
-static int kgdb_do_roundup = 1;
+static int kgdb_do_roundup __ro_after_init = 1;
 
 static int __init opt_nokgdbroundup(char *str)
 {

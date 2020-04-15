@@ -2906,7 +2906,7 @@ static void __init kdb_cmd_init(void)
 /* Initialize kdb_printf, breakpoint tables and kdb state */
 void __init kdb_init(int lvl)
 {
-	static int kdb_init_lvl = KDB_NOT_INITIALIZED;
+	static int kdb_init_lvl __initdata = KDB_NOT_INITIALIZED;
 	int i;
 
 	if (kdb_init_lvl == KDB_INIT_FULL || lvl <= kdb_init_lvl)
