@@ -21,8 +21,8 @@
 #define PIRQ_SIGNATURE	(('$' << 0) + ('P' << 8) + ('I' << 16) + ('R' << 24))
 #define PIRQ_VERSION 0x0100
 
-static int broken_hp_bios_irq9;
-static int acer_tm360_irqrouting;
+static int broken_hp_bios_irq9 __ro_after_init;
+static int acer_tm360_irqrouting __ro_after_init;
 
 static struct irq_routing_table *pirq_table;
 

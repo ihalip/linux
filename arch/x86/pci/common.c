@@ -20,12 +20,12 @@
 #include <asm/pci_x86.h>
 #include <asm/setup.h>
 
-unsigned int pci_probe = PCI_PROBE_BIOS | PCI_PROBE_CONF1 | PCI_PROBE_CONF2 |
-				PCI_PROBE_MMCONF;
+unsigned int pci_probe __ro_after_init = PCI_PROBE_BIOS | PCI_PROBE_CONF1 |
+				PCI_PROBE_CONF2 | PCI_PROBE_MMCONF;
 
-static int pci_bf_sort;
-int pci_routeirq;
-int noioapicquirk;
+static int pci_bf_sort __ro_after_init;
+int pci_routeirq __ro_after_init;
+int noioapicquirk __ro_after_init;
 #ifdef CONFIG_X86_REROUTE_FOR_BROKEN_BOOT_IRQS
 int noioapicreroute = 0;
 #else
