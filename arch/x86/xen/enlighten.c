@@ -270,7 +270,7 @@ void xen_reboot(int reason)
 }
 
 static int reboot_reason = SHUTDOWN_reboot;
-static bool xen_legacy_crash;
+static bool xen_legacy_crash __ro_after_init;
 void xen_emergency_restart(void)
 {
 	xen_reboot(reboot_reason);

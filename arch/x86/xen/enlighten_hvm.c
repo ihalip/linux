@@ -25,7 +25,7 @@
 #include "mmu.h"
 #include "smp.h"
 
-static unsigned long shared_info_pfn;
+static unsigned long shared_info_pfn __ro_after_init;
 
 void xen_hvm_init_shared_info(void)
 {
