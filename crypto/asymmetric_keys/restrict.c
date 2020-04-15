@@ -12,7 +12,7 @@
 #include <crypto/public_key.h>
 #include "asymmetric_keys.h"
 
-static bool use_builtin_keys;
+static bool use_builtin_keys __ro_after_init;
 static struct asymmetric_key_id *ca_keyid;
 
 #ifndef MODULE
