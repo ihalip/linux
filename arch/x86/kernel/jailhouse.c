@@ -22,11 +22,11 @@
 #include <asm/setup.h>
 #include <asm/jailhouse_para.h>
 
-static struct jailhouse_setup_data setup_data;
+static struct jailhouse_setup_data setup_data __ro_after_init;
 #define SETUP_DATA_V1_LEN	(sizeof(setup_data.hdr) + sizeof(setup_data.v1))
 #define SETUP_DATA_V2_LEN	(SETUP_DATA_V1_LEN + sizeof(setup_data.v2))
 
-static unsigned int precalibrated_tsc_khz;
+static unsigned int precalibrated_tsc_khz __ro_after_init;
 
 static void jailhouse_setup_irq(unsigned int irq)
 {
