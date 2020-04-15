@@ -32,7 +32,7 @@
 
 #include <asm/trace/hyperv.h>
 
-static struct apic orig_apic;
+static struct apic orig_apic __ro_after_init;
 
 static u64 hv_apic_icr_read(void)
 {
