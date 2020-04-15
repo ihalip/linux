@@ -29,10 +29,10 @@
  * The ratio of compute unit power accumulator sample period to the
  * PTSC period.
  */
-static unsigned int cpu_pwr_sample_ratio;
+static unsigned int cpu_pwr_sample_ratio __ro_after_init;
 
 /* Maximum accumulated power of a compute unit. */
-static u64 max_cu_acc_power;
+static u64 max_cu_acc_power __ro_after_init;
 
 static struct pmu pmu_class;
 

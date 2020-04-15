@@ -136,9 +136,9 @@ struct rapl_model {
 static int rapl_hw_unit[NR_RAPL_DOMAINS] __read_mostly;
 static struct rapl_pmus *rapl_pmus;
 static cpumask_t rapl_cpu_mask;
-static unsigned int rapl_cntr_mask;
+static unsigned int rapl_cntr_mask __ro_after_init;
 static u64 rapl_timer_ms;
-static struct perf_msr rapl_msrs[];
+static struct perf_msr rapl_msrs[] __ro_after_init;
 
 static inline struct rapl_pmu *cpu_to_rapl_pmu(unsigned int cpu)
 {

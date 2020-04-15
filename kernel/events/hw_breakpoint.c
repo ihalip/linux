@@ -57,7 +57,7 @@ static struct bp_cpuinfo *get_bp_info(int cpu, enum bp_type_idx type)
 /* Keep track of the breakpoints attached to tasks */
 static LIST_HEAD(bp_task_head);
 
-static int constraints_initialized;
+static int constraints_initialized __ro_after_init;
 
 /* Gather the number of total pinned and un-pinned bp in a cpuset */
 struct bp_busy_slots {

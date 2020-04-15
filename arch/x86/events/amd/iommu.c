@@ -130,7 +130,7 @@ static struct amd_iommu_event_desc amd_iommu_v2_event_descs[] = {
 /*---------------------------------------------
  * sysfs cpumask attributes
  *---------------------------------------------*/
-static cpumask_t iommu_cpumask;
+static cpumask_t iommu_cpumask __ro_after_init;
 
 static ssize_t _iommu_cpumask_show(struct device *dev,
 				   struct device_attribute *attr,

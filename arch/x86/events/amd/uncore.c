@@ -31,9 +31,9 @@
 #undef pr_fmt
 #define pr_fmt(fmt)	"amd_uncore: " fmt
 
-static int num_counters_llc;
-static int num_counters_nb;
-static bool l3_mask;
+static int num_counters_llc __ro_after_init;
+static int num_counters_nb __ro_after_init;
+static bool l3_mask __ro_after_init;
 
 static HLIST_HEAD(uncore_unused_list);
 
