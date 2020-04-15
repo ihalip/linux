@@ -399,7 +399,7 @@ static int wb_priority(struct writeback_control *wbc)
  * NFS congestion control
  */
 
-int nfs_congestion_kb;
+int nfs_congestion_kb __ro_after_init;
 
 #define NFS_CONGESTION_ON_THRESH 	(nfs_congestion_kb >> (PAGE_SHIFT-10))
 #define NFS_CONGESTION_OFF_THRESH	\
