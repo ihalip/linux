@@ -78,7 +78,7 @@ static unsigned int max_physical_apicid;
 /*
  * Bitmask of physically existing CPUs:
  */
-physid_mask_t phys_cpu_present_map;
+physid_mask_t phys_cpu_present_map __ro_after_init;
 
 /*
  * Processor to be disabled specified by kernel parameter

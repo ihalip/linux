@@ -421,7 +421,7 @@ static void __init setup_cr_pinning(void)
 /*
  * Protection Keys are not available in 32-bit mode.
  */
-static bool pku_disabled;
+static bool pku_disabled __ro_after_init;
 
 static __always_inline void setup_pku(struct cpuinfo_x86 *c)
 {
@@ -600,7 +600,7 @@ void switch_to_new_gdt(int cpu)
 	load_percpu_segment(cpu);
 }
 
-static const struct cpu_dev *cpu_devs[X86_VENDOR_NUM] = {};
+static const struct cpu_dev *cpu_devs[X86_VENDOR_NUM] __ro_after_init = {};
 
 static void get_model_name(struct cpuinfo_x86 *c)
 {

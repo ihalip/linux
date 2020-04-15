@@ -46,8 +46,11 @@ struct hpet_base {
 /*
  * HPET address is set in acpi/boot.c, when an ACPI entry exists
  */
-unsigned long				hpet_address;
-u8					hpet_blockid; /* OS timer block num */
+unsigned long				hpet_address __ro_after_init;
+
+/* OS timer block num */
+u8					hpet_blockid __ro_after_init;
+
 bool					hpet_msi_disable;
 
 #ifdef CONFIG_PCI_MSI
@@ -60,11 +63,11 @@ static void __iomem			*hpet_virt_address;
 static struct hpet_base			hpet_base;
 
 static bool				hpet_legacy_int_enabled;
-static unsigned long			hpet_freq;
+static unsigned long			hpet_freq __ro_after_init;
 
-bool					boot_hpet_disable;
-bool					hpet_force_user;
-static bool				hpet_verbose;
+bool					boot_hpet_disable __ro_after_init;
+bool					hpet_force_user __ro_after_init;
+static bool				hpet_verbose __ro_after_init;
 
 static inline
 struct hpet_channel *clockevent_to_channel(struct clock_event_device *evt)

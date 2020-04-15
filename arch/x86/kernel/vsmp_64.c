@@ -55,7 +55,7 @@ static void __init set_vsmp_ctl(void)
 
 	early_iounmap(address, 8);
 }
-static int is_vsmp = -1;
+static int is_vsmp __ro_after_init = -1;
 
 static void __init detect_vsmp_box(void)
 {

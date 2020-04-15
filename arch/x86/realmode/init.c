@@ -11,7 +11,7 @@
 #include <asm/crash.h>
 
 struct real_mode_header *real_mode_header;
-u32 *trampoline_cr4_features;
+u32 *trampoline_cr4_features __ro_after_init;
 
 /* Hold the pgd entry used on booting additional CPUs */
 pgd_t trampoline_pgd_entry;

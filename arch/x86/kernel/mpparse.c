@@ -432,8 +432,8 @@ static inline void __init construct_default_ISA_mptable(int mpc_default_type)
 	}
 }
 
-static unsigned long mpf_base;
-static bool mpf_found;
+static unsigned long mpf_base __ro_after_init;
+static bool mpf_found __ro_after_init;
 
 static unsigned long __init get_mpc_size(unsigned long physptr)
 {
@@ -814,7 +814,7 @@ out:
 	return 0;
 }
 
-int enable_update_mptable;
+int enable_update_mptable __ro_after_init;
 
 static int __init update_mptable_setup(char *str)
 {

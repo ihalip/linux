@@ -207,7 +207,7 @@ static void smp_callin(void)
 	cpumask_set_cpu(cpuid, cpu_callin_mask);
 }
 
-static int cpu0_logical_apicid;
+static int cpu0_logical_apicid __ro_after_init;
 static int enable_start_cpu0;
 /*
  * Activate a secondary processor.
@@ -714,7 +714,7 @@ void __inquire_remote_apic(int apicid)
  */
 #define UDELAY_10MS_DEFAULT 10000
 
-static unsigned int init_udelay = UINT_MAX;
+static unsigned int init_udelay __ro_after_init = UINT_MAX;
 
 static int __init cpu_init_udelay(char *str)
 {
