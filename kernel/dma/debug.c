@@ -120,7 +120,7 @@ static u32 min_free_entries;
 static u32 nr_total_entries;
 
 /* number of preallocated entries requested by kernel cmdline */
-static u32 nr_prealloc_entries = PREALLOC_DMA_DEBUG_ENTRIES;
+static u32 nr_prealloc_entries __ro_after_init = PREALLOC_DMA_DEBUG_ENTRIES;
 
 /* per-driver filter related state */
 
