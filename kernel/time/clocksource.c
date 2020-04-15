@@ -90,7 +90,7 @@ static struct clocksource *suspend_clocksource;
 static LIST_HEAD(clocksource_list);
 static DEFINE_MUTEX(clocksource_mutex);
 static char override_name[CS_NAME_LEN];
-static int finished_booting;
+static int finished_booting __ro_after_init;
 static u64 suspend_start;
 
 #ifdef CONFIG_CLOCKSOURCE_WATCHDOG

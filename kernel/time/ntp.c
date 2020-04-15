@@ -80,7 +80,7 @@ static time64_t		time_reftime;
 static long			time_adjust;
 
 /* constant (boot-param configurable) NTP tick adjustment (upscaled)	*/
-static s64			ntp_tick_adj;
+static s64			ntp_tick_adj __ro_after_init;
 
 /* second value of the next pending leapsecond, or TIME64_MAX if no leap */
 static time64_t			ntp_next_leap_sec = TIME64_MAX;
