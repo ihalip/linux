@@ -31,6 +31,16 @@ EXPORT_SYMBOL_GPL(base_false_key);
 DEFINE_STATIC_KEY_FALSE(base_inv_false_key);
 EXPORT_SYMBOL_GPL(base_inv_false_key);
 
+/* read-only keys */
+DEFINE_STATIC_KEY_TRUE_RO(base_true_ro_key);
+EXPORT_SYMBOL_GPL(base_true_ro_key);
+DEFINE_STATIC_KEY_FALSE_RO(base_false_ro_key);
+EXPORT_SYMBOL_GPL(base_false_ro_key);
+DEFINE_STATIC_KEY_TRUE_RO(base_inv_true_ro_key);
+EXPORT_SYMBOL_GPL(base_inv_true_ro_key);
+DEFINE_STATIC_KEY_FALSE_RO(base_inv_false_ro_key);
+EXPORT_SYMBOL_GPL(base_inv_false_ro_key);
+
 static void invert_key(struct static_key *key)
 {
 	if (static_key_enabled(key))
@@ -45,6 +55,10 @@ static int __init test_static_key_base_init(void)
 	invert_key(&base_inv_old_false_key);
 	invert_key(&base_inv_true_key.key);
 	invert_key(&base_inv_false_key.key);
+
+	/* should be possible to change value during __init */
+	invert_key(&base_inv_true_ro_key.key);
+	invert_key(&base_inv_false_ro_key.key);
 
 	return 0;
 }

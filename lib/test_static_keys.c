@@ -10,6 +10,7 @@
 
 #include <linux/module.h>
 #include <linux/jump_label.h>
+#include <linux/sysfs.h>
 
 /* old keys */
 struct static_key old_true_key	= STATIC_KEY_INIT_TRUE;
@@ -31,6 +32,11 @@ extern struct static_key_true base_inv_true_key;
 extern struct static_key_false base_false_key;
 extern struct static_key_false base_inv_false_key;
 
+extern struct static_key_true base_true_ro_key;
+extern struct static_key_false base_false_ro_key;
+extern struct static_key_true base_inv_true_ro_key;
+extern struct static_key_false base_inv_false_ro_key;
+
 
 struct test_key {
 	bool			init_state;
@@ -43,6 +49,15 @@ static bool key ## _ ## branch(void)	\
 {					\
 	return branch(&key);		\
 }
+
+static void set_key(struct static_key *key, int enabled)
+{
+	if (enabled)
+		static_key_enable(key);
+	else
+		static_key_disable(key);
+}
+
 
 static void invert_key(struct static_key *key)
 {
@@ -105,6 +120,45 @@ test_key_func(base_false_key, static_branch_likely)
 test_key_func(base_false_key, static_branch_unlikely)
 test_key_func(base_inv_false_key, static_branch_likely)
 test_key_func(base_inv_false_key, static_branch_unlikely)
+
+static struct kobject *test_static_key_kobj;
+
+static ssize_t static_keys_ro_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+{
+	return sysfs_emit(buf,
+		"base_true_ro=%d, base_false_ro=%d, base_inv_true_ro=%d, base_inv_false_ro=%d\n",
+		static_key_enabled(&base_true_ro_key.key),
+		static_key_enabled(&base_false_ro_key.key),
+		static_key_enabled(&base_inv_true_ro_key.key),
+		static_key_enabled(&base_inv_false_ro_key.key)
+	);
+}
+
+static ssize_t static_keys_ro_store(struct kobject *kobj, struct kobj_attribute *attr, const char *buf, size_t count)
+{
+	int true_ro = 0, false_ro = 0, inv_true_ro = 0, inv_false_ro = 0;
+	sscanf(buf, "%d %d %d %d", &true_ro, &false_ro, &inv_true_ro, &inv_false_ro);
+	pr_warn("setting true_ro=%d, false_ro=%d, inv_true_ro=%d, inv_false_ro=%d\n",
+		true_ro, false_ro, inv_true_ro, inv_false_ro);
+	set_key(&base_true_ro_key.key, true_ro);
+	set_key(&base_false_ro_key.key, false_ro);
+	set_key(&base_inv_true_ro_key.key, inv_true_ro);
+	set_key(&base_inv_false_ro_key.key, inv_false_ro);
+
+	return count;
+}
+
+static struct kobj_attribute static_keys_ro_attribute =
+	__ATTR(ro_keys, 0644, static_keys_ro_show, static_keys_ro_store);
+
+static struct attribute *attrs[] = {
+	&static_keys_ro_attribute.attr,
+	NULL,
+};
+
+static struct attribute_group attr_group = {
+	.attrs = attrs,
+};
 
 static int __init test_static_key_init(void)
 {
@@ -223,6 +277,18 @@ static int __init test_static_key_init(void)
 	ret = verify_keys(static_key_tests, size, false);
 	if (ret)
 		goto out;
+
+	test_static_key_kobj = kobject_create_and_add("static_keys_ro", kernel_kobj);
+	if (!test_static_key_kobj) {
+		ret = -ENOMEM;
+		goto out;
+	}
+	ret = sysfs_create_group(test_static_key_kobj, &attr_group);
+	if (ret) {
+		kobject_put(test_static_key_kobj);
+		goto out;
+	}
+
 	return 0;
 out:
 	return ret;
@@ -230,6 +296,7 @@ out:
 
 static void __exit test_static_key_exit(void)
 {
+	kobject_put(test_static_key_kobj);
 }
 
 module_init(test_static_key_init);
